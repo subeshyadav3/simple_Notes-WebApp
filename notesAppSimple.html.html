@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>snake game </title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<style type="text/css">
+		body{
+			display: flex;
+			justify-content: center;
+			background-image: linear-gradient(to right,blue,pink);
+			font-size: 2rem;
+			flex-direction: column;
+			color: white;
+			
+		}
+		#addNotes{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+
+		}
+		#add{
+			margin: 10px;
+			border: 5px solid red;
+			width: 100px;
+			height: 40px;
+			font-size: 1rem;
+			color: white;
+			border-radius: 10px;
+			background-color: purple;
+			box-sizing: border-box;
+			box-shadow: 2px 2px 5px red;
+		}
+		.area{
+			display: flex;
+			justify-content: center;
+			flex-direction: row;
+			margin-bottom: 10px;
+			width: 80vw;
+
+			border-radius: 10px;
+		}
+		textarea{
+			background-color: black;
+			font-size: 0.7rem;
+			color: white;
+			border: 5px solid black;
+			border-radius: 10px;
+			font-family: 'Roboto', sans-serif;
+		}
+		.cross{
+			background-color: orangered;
+			width: 20px;
+			height: 20px;
+
+		}
+		#noteCount{
+/*			display: flex;*/
+			border: 2px solid black;
+			width: 30px;
+			height: 20px;
+		}
+	</style>
+</head>
+<body>
+	<!-- <canvas id="board"></canvas> -->
+	<strong>Notes App</strong>
+	
+	<br>
+	
+
+	<button id="noteCount">0</button>
+
+<div id="addNotes">
+	<button id="add">Notes Add</button>
+</div>
+<script type="text/javascript" >
+		// window.requestAnimationFrame(frames);
+
+		// function frames(){
+		// 	console.log("doing");
+		// 	window.requestAnimationFrame(frames);
+		// }
+// your-script-file.js
+
+
+  const addNotes = document.getElementById('addNotes');
+  const add = document.getElementById('add');
+  let notesCount = 0;
+
+  function run() {
+    const newNotes = document.createElement('div');
+    newNotes.innerHTML = `<textarea rows="5" cols="50"></textarea> <button class="cross">X</button>`;
+    newNotes.classList.add('area');
+    addNotes.appendChild(newNotes);
+    notesCount++;
+    updateNoteCount();
+  }
+
+  function updateNoteCount() {
+    const noteCount = document.getElementById('noteCount');
+    noteCount.innerText = notesCount;
+  }
+
+  function handleDeleteClick(event) {
+    if (event.target.classList.contains('cross')) {
+      event.target.parentNode.remove();
+      notesCount--;
+      updateNoteCount();
+    }
+  }
+
+  add.addEventListener('click', run);
+  addNotes.addEventListener('click', handleDeleteClick);
+
+
+
+</script>
+</body>
+</html>
